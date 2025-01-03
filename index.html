@@ -262,7 +262,7 @@
             pointer-events: none;
             transform-origin: center;
         }
-        /* Navigation Styles */
+                /* Navigation Styles */
         .nav {
             position: fixed;
             top: 0;
@@ -471,7 +471,7 @@
                 transform: translateX(0);
             }
         }
-        /* Hero Section Styles */
+                /* Hero Section Styles */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -782,7 +782,7 @@
         .expertise-card:hover .meter-progress {
             transform: scaleX(1);
         }
-          /* Projects Section */
+                /* Projects Section */
         .projects {
             padding: var(--spacing-xl) 0;
             background: var(--primary-dark);
@@ -1100,7 +1100,7 @@
             height: 100%;
             background: var(--gradient-cyber);
         }
-          /* Secure Contact Form */
+                /* Secure Contact Form */
         .secure-form {
             background: rgba(10, 25, 41, 0.8);
             border-radius: var(--radius-lg);
@@ -1359,196 +1359,195 @@
     <footer class="cyber-footer">
         <!-- Footer content will be dynamically inserted by JavaScript -->
     </footer>
-
     <script>
-      // Initialize all components when DOM is loaded
-      document.addEventListener('DOMContentLoaded', () => {
-        initializeLoader();
-        initializeParticleSystem();
-        initializeTerminal();
-        initializeNetworkVisualization();
-        initializeEncryption();
-        initializeProtocolVisualizer();
-        initializeSkillMatrix();
-        initializeSecureContact();
-        initializeProjectCards();
-        initializeSecurityMonitor();
-        initializeEnhancedParticles();
-        initializeSkillBars();
-        populateDynamicContent();
-    });
-    
-    // Loader Implementation
-    const initializeLoader = () => {
-        const loader = document.getElementById('loader');
-        const loaderText = document.getElementById('loaderText');
-        const loadingSequence = [
-            'Initializing secure environment...',
-            'Establishing encrypted connection...',
-            'Verifying security protocols...',
-            'Loading defense mechanisms...',
-            'Activating ICS/OT security layers...'
-        ];
-    
-        let sequenceIndex = 0;
-        const typeLoadingText = async () => {
-            const text = loadingSequence[sequenceIndex];
-            loaderText.textContent = '';
-            
-            for(let char of text) {
-                await new Promise(resolve => setTimeout(resolve, 50));
-                loaderText.textContent += char;
-            }
-            
-            sequenceIndex = (sequenceIndex + 1) % loadingSequence.length;
-        };
-    
-        const loadingInterval = setInterval(typeLoadingText, 2000);
-    
-        // Simulate security checks
+// Initialize all components when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeLoader();
+    initializeParticleSystem();
+    initializeTerminal();
+    initializeNetworkVisualization();
+    initializeEncryption();
+    initializeProtocolVisualizer();
+    initializeSkillMatrix();
+    initializeSecureContact();
+    initializeProjectCards();
+    initializeSecurityMonitor();
+    initializeEnhancedParticles();
+    initializeSkillBars();
+    populateDynamicContent();
+});
+
+// Loader Implementation
+const initializeLoader = () => {
+    const loader = document.getElementById('loader');
+    const loaderText = document.getElementById('loaderText');
+    const loadingSequence = [
+        'Initializing secure environment...',
+        'Establishing encrypted connection...',
+        'Verifying security protocols...',
+        'Loading defense mechanisms...',
+        'Activating ICS/OT security layers...'
+    ];
+
+    let sequenceIndex = 0;
+    const typeLoadingText = async () => {
+        const text = loadingSequence[sequenceIndex];
+        loaderText.textContent = '';
+        
+        for(let char of text) {
+            await new Promise(resolve => setTimeout(resolve, 50));
+            loaderText.textContent += char;
+        }
+        
+        sequenceIndex = (sequenceIndex + 1) % loadingSequence.length;
+    };
+
+    const loadingInterval = setInterval(typeLoadingText, 2000);
+
+    // Simulate security checks
+    setTimeout(() => {
+        clearInterval(loadingInterval);
+        loader.classList.add('loaded');
         setTimeout(() => {
-            clearInterval(loadingInterval);
-            loader.classList.add('loaded');
-            setTimeout(() => {
-                loader.style.display = 'none';
-                initializePostLoad();
-            }, 500);
-        }, 3000);
-    };
-    
-    // Particle System
-    const initializeParticleSystem = () => {
-        const canvas = document.createElement('canvas');
-        canvas.className = 'particle-canvas';
-        document.querySelector('.cyber-grid').appendChild(canvas);
-        const ctx = canvas.getContext('2d');
-    
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
-    
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-    
-            reset() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 2;
-                this.vy = (Math.random() - 0.5) * 2;
-                this.radius = Math.random() * 2 + 1;
-                this.color = '#00ff9c';
-                this.life = 1;
-                this.decay = 0.005;
-            }
-    
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                this.life -= this.decay;
-    
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-    
-                if (this.life <= 0) this.reset();
-            }
-    
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 255, 156, ${this.life})`;
-                ctx.fill();
-            }
+            loader.style.display = 'none';
+            initializePostLoad();
+        }, 500);
+    }, 3000);
+};
+
+// Particle System
+const initializeParticleSystem = () => {
+    const canvas = document.createElement('canvas');
+    canvas.className = 'particle-canvas';
+    document.querySelector('.cyber-grid').appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    class Particle {
+        constructor() {
+            this.reset();
         }
-    
-        const particles = Array.from({ length: 50 }, () => new Particle());
-    
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-    
-            // Draw connections between particles
-            particles.forEach((p1, i) => {
-                particles.slice(i + 1).forEach(p2 => {
-                    const dx = p1.x - p2.x;
-                    const dy = p1.y - p2.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-    
-                    if (distance < 100) {
-                        ctx.beginPath();
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(0, 255, 156, ${(1 - distance / 100) * 0.2})`;
-                        ctx.stroke();
-                    }
-                });
-            });
-    
-            requestAnimationFrame(animate);
+
+        reset() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 2;
+            this.vy = (Math.random() - 0.5) * 2;
+            this.radius = Math.random() * 2 + 1;
+            this.color = '#00ff9c';
+            this.life = 1;
+            this.decay = 0.005;
         }
-    
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.life -= this.decay;
+
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+
+            if (this.life <= 0) this.reset();
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(0, 255, 156, ${this.life})`;
+            ctx.fill();
+        }
+    }
+
+    const particles = Array.from({ length: 50 }, () => new Particle());
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
         });
-    
-        animate();
+
+        // Draw connections between particles
+        particles.forEach((p1, i) => {
+            particles.slice(i + 1).forEach(p2 => {
+                const dx = p1.x - p2.x;
+                const dy = p1.y - p2.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 100) {
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.strokeStyle = `rgba(0, 255, 156, ${(1 - distance / 100) * 0.2})`;
+                    ctx.stroke();
+                }
+            });
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    });
+
+    animate();
+};
+
+// Terminal Simulator
+const initializeTerminal = () => {
+    const terminal = document.querySelector('.terminal-body');
+    const commands = [
+        {
+            cmd: 'initialize_security_protocol',
+            response: 'Security protocols activated. Monitoring for potential threats...'
+        },
+        {
+            cmd: 'scan_network',
+            response: 'Network scan complete. All systems operational.'
+        },
+        {
+            cmd: 'check_ics_status',
+            response: 'ICS systems secure. Defense-in-depth measures active.'
+        }
+    ];
+
+    let currentCommand = 0;
+
+    const typeCommand = async (text) => {
+        const commandLine = document.createElement('div');
+        commandLine.className = 'command-line';
+        commandLine.innerHTML = '<span class="prompt">root@secure:~$</span> ';
+        terminal.appendChild(commandLine);
+
+        const commandText = document.createElement('span');
+        commandLine.appendChild(commandText);
+
+        for (let char of text) {
+            await new Promise(resolve => setTimeout(resolve, 50));
+            commandText.textContent += char;
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        const responseElement = document.createElement('div');
+        responseElement.className = 'response';
+        responseElement.textContent = commands[currentCommand].response;
+        terminal.appendChild(responseElement);
+
+        terminal.scrollTop = terminal.scrollHeight;
+        currentCommand = (currentCommand + 1) % commands.length;
     };
-    
-    // Terminal Simulator
-    const initializeTerminal = () => {
-        const terminal = document.querySelector('.terminal-body');
-        const commands = [
-            {
-                cmd: 'initialize_security_protocol',
-                response: 'Security protocols activated. Monitoring for potential threats...'
-            },
-            {
-                cmd: 'scan_network',
-                response: 'Network scan complete. All systems operational.'
-            },
-            {
-                cmd: 'check_ics_status',
-                response: 'ICS systems secure. Defense-in-depth measures active.'
-            }
-        ];
-    
-        let currentCommand = 0;
-    
-        const typeCommand = async (text) => {
-            const commandLine = document.createElement('div');
-            commandLine.className = 'command-line';
-            commandLine.innerHTML = '<span class="prompt">root@secure:~$</span> ';
-            terminal.appendChild(commandLine);
-    
-            const commandText = document.createElement('span');
-            commandLine.appendChild(commandText);
-    
-            for (let char of text) {
-                await new Promise(resolve => setTimeout(resolve, 50));
-                commandText.textContent += char;
-            }
-    
-            await new Promise(resolve => setTimeout(resolve, 500));
-    
-            const responseElement = document.createElement('div');
-            responseElement.className = 'response';
-            responseElement.textContent = commands[currentCommand].response;
-            terminal.appendChild(responseElement);
-    
-            terminal.scrollTop = terminal.scrollHeight;
-            currentCommand = (currentCommand + 1) % commands.length;
-        };
-    
-        setInterval(() => {
-            typeCommand(commands[currentCommand].cmd);
-        }, 4000);
-    };
-      // Network Visualization with Three.js
+
+    setInterval(() => {
+        typeCommand(commands[currentCommand].cmd);
+    }, 4000);
+};
+        // Network Visualization with Three.js
 const initializeNetworkVisualization = () => {
     const container = document.getElementById('networkViz');
     const scene = new THREE.Scene();
@@ -1839,4 +1838,3 @@ window.addEventListener('scroll', debounce(() => {
 </script>
 </body>
 </html>
-      
